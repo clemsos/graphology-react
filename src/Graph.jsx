@@ -62,29 +62,15 @@ const Graph = ({
   graph.nodes().forEach(node => {
     const attr = graph.getNodeAttributes(node);
     graph.mergeNodeAttributes(node, {
-      x: attr.x*(width-margin),
-      y: attr.y*(height-margin)
+      x: attr.x*(width-margin/2),
+      y: attr.y*(height-margin/2)
     });
   })
 
   return (
     <svg width={width} height={height} transform={`translate(${margin/2},${margin/2})`}>
-      <Edges
-        {...{
-            graph,
-            w : width-margin,
-            h : height-margin
-          }
-        }
-        />
-      <Nodes
-        {... {
-          graph,
-          w : width-margin,
-          h : height-margin
-        }
-      }
-      />
+      <Edges graph={graph} />
+      <Nodes graph={graph} />
     </svg>
   )
 }
